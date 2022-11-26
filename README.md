@@ -29,7 +29,7 @@ Berikut merupakan soal topologi yang diberikan dimana kami diminta untuk menyele
 2. CIDR dikerjakan di GNS3
 3. Prefix IP menggunakan `10.40.0.0`
 
-Detil soal dapat dilihat pada [tautan ini].(https://docs.google.com/document/d/1a_ITp6WYIqoJFXA2oL1jkox9AzqYGxicjr2LGPBsqBE/edit)
+Detil soal dapat dilihat pada [tautan ini](https://docs.google.com/document/d/1a_ITp6WYIqoJFXA2oL1jkox9AzqYGxicjr2LGPBsqBE/edit)
 
 ## VLSM
 ---
@@ -45,7 +45,10 @@ Pertama-tama kami membuat pembagian subnet terhadap topologi soal.
 Dari hasil pembagian subnet diketahui terdapat sejumlah **18 Subnet**
 
 ### Perhitungan VLSM
-1. Menentukan jumlah alamat IP yang dibutuhkan oleh tiap subnet dari 18 subnet yang ada 	
+
+#### 1. Menentukan Jumlah IP tiap Subnet.
+
+Menentukan jumlah alamat IP yang dibutuhkan oleh tiap subnet dari 18 subnet yang ada 	
 
 | Jumlah Host | Size | Alokasi | Netmask |   Subnet Mask   |    Address   |    Assignable IP Range    | Broadcast Address |
 |:-----------:|:----:|:-------:|:-------:|:---------------:|:------------:|:-------------------------:|:-----------------:|
@@ -69,5 +72,341 @@ Dari hasil pembagian subnet diketahui terdapat sejumlah **18 Subnet**
 | A9          |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.196 | 10.40.11.197-10.40.11.198 | 10.40.11.199      |
 | Total       | 2618 |         | /20     |                 |              |                           |                   |
 
-2. Subnet besar yang kami bentuk memiliki NID 10.40.0.0 dengan netmask /20. Lalu, kita mulai dengan perhitungan pembagian IP dengan bantuan pohon IP seperti gambar berikut:<br>
+#### 2. Menggambarkan Tree
+
+Subnet besar yang kami bentuk memiliki NID 10.40.0.0 dengan netmask /20. Lalu, kita mulai dengan perhitungan pembagian IP dengan bantuan pohon IP seperti gambar berikut:<br>
 ![Tree](images/tree.jpg)
+
+#### 3. Setting IP
+
+Setting IP ke seluruh node sesuai dengan pembagian IP yang sudah dilakukan sebelumnya. Di sini kami mencontohkan setting IP pada subnet A3.
+
+- The Resonance: Router yang tersambung langsung ke internet.
+	- IP pada interface FastEthernet0/0 (Fa0/0) yang mengarah ke Cloud.
+	Untuk Interface ini, kita tidak perlu mengassign IP apapun.
+
+	![IP Fa1/0](images/setIP0.png)
+
+	- IP pada interface FastEthernet1/0 (Fa1/0) yang mengarah ke Server The Beast.
+	
+	![IP Fa1/0](images/setIP1.png)
+
+	- IP pada interface Ethernet1/0 (Eth1/0) yang mengarah ke Router The Order.
+
+	![IP Fa1/0](images/setIP2.png)
+
+	- IP pada interface Ethernet1/1 (Eth1/1) yang mengarah ke Router The Instrument.
+
+	![IP Fa1/0](images/setIP3.png)
+
+	- IP pada interface Ethernet1/2 (Eth1/2) yang mengarah ke Router The Magical.
+
+	![IP Fa1/0](images/setIP4.png)
+
+- The Beast: Server yang merupakan subnet A3.
+	- IP pada interface FastEthernet0 (Fa0) yang mengarah ke router The Resonance. 
+
+	![IP Fa1/0](images/setIP5.png)
+
+Di atas adalah setting IP pada subnet A3. Untuk subnet lainnya dilakukan dengan cara yang sama. Lebih jelasnya dapat dilihat langsung pada packet tracer [berikut](https://github.com/404.html).
+
+#### 4. Routing
+
+Setting routing pada seluruh router yang ada. Pada setiap router nantinya akan dirouting dengan seluruh subnet yang ada di bawahnya sehingga nantinya seluruh node bisa saling terhubung.
+
+- Router The Resonance.
+
+Berikut adalah subnet yang harus dimasukkan dalam routing pada router The Resonance.
+
+1. Subnet via The Order
+
+Nantinya akan terhubung via IP The Order yang menuju The Resonance.
+
+```txt
+Subnet A1:
+	Network: 10.40.0.0
+	Netmask: 255.255.252.0
+	Next Hop: 10.40.11.210
+Subnet A2:
+	Network: 10.40.11.128
+	Netmask: 255.255.255.192
+	Next Hop: 10.40.11.210
+Subnet A12:
+	Network: 10.40.11.200
+	Netmask: 255.255.255.252
+	Next Hop: 10.40.11.210
+Subnet A13:
+	Network: 10.40.11.204
+	Netmask: 255.255.255.252
+	Next Hop: 10.40.11.210
+Subnet A11:
+	Network: 10.40.8.0
+	Netmask: 255.255.255.0
+	Next Hop: 10.40.11.210
+```
+
+2. Subnet via The Magical
+
+Nantinya akan terhubung via IP The Magical yang menuju The Resonance.
+
+```txt
+Subnet A5:
+	Network: 10.40.6.0
+	Netmask: 255.255.254.0
+	Next Hop: 10.40.11.210
+```
+
+3. Subnet via The Instrument
+
+Nantinya akan terhubung via IP The Instrument yang menuju The Resonance.
+
+```txt
+Subnet A4:
+	Network: 10.40.10.0
+	Netmask: 255.255.255.128
+	Next Hop: 10.40.11.218
+Subnet A17:
+	Network: 10.40.11.220
+	Netmask: 255.255.255.252
+	Next Hop: 10.40.11.218
+Subnet A6:
+	Network: 10.40.10.128
+	Netmask: 255.255.255.128
+	Next Hop: 10.40.11.218
+Subnet A7:
+	Network: 10.40.11.0
+	Netmask: 255.255.255.128
+	Next Hop: 10.40.11.218
+Subnet A18:
+	Network: 10.40.11.224
+	Netmask: 255.255.255.252
+	Next Hop: 10.40.11.218
+Subnet A10:
+	Network: 10.40.9.0
+	Netmask: 255.255.255.0
+	Next Hop: 10.40.11.218
+Subnet A9:
+	Network: 10.40.11.196
+	Netmask: 255.255.255.252
+	Next Hop: 10.40.11.218
+Subnet A8:
+	Network: 10.40.4.0
+	Netmask: 255.255.254.0
+	Next Hop: 10.40.11.218
+```
+
+Berikut adalah screenshot routing pada The Resonance.
+
+![Routing Resonance](images/routing0.png)
+
+- Router The Order.
+
+Pada router The Order kita akan menghubungkan subnet yang berada di bawah router. Nantinya subnet-subnet tersebut akan terhubung via IP The Minister yang menuju ke The Order. 
+
+Agar bisa terhubung dengan internet, nantinya perlu untuk mengatur routing dengan network `0.0.0.0`, netmask `0.0.0.0` via IP interface dari Resonance yang menuju ke Order dalam hal ini `10.40.11.209`.
+
+Berikut adalah routing selengkapnya.
+
+```txt
+Internet:
+	Network: 0.0.0.0
+	Netmask: 0.0.0.0
+	Next Hop: 10.40.11.209
+Subnet A1:
+	Network: 10.40.0.0
+	Netmask: 255.255.252.0
+	Next Hop: 10.40.11.202
+Subnet A13:
+	Network: 10.40.11.204
+	Netmask: 255.255.255.252
+	Next Hop: 10.40.11.202
+Subnet A11:
+	Network: 10.40.8.0
+	Netmask: 255.255.255.0
+	Next Hop: 10.40.11.202
+```
+
+Berikut adalah screenshot routing pada The Resonance.
+
+![Routing Order](images/routing1.png)
+
+- Router The Minister.
+
+Pada router The Minister kita akan menghubungkan subnet yang berada di bawah router. Nantinya subnet-subnet tersebut akan terhubung via IP The Dauntless yang menuju ke The Minister. 
+
+Agar bisa terhubung dengan internet, nantinya perlu untuk mengatur routing dengan network `0.0.0.0`, netmask `0.0.0.0` via IP interface dari Order yang menuju ke Minister dalam hal ini `10.40.11.209`.
+
+Berikut adalah routing selengkapnya.
+
+```txt
+Internet:
+	Network: 0.0.0.0
+	Netmask: 0.0.0.0
+	Next Hop: 10.40.11.201
+Subnet A11:
+	Network: 10.40.8.0
+	Netmask: 255.255.255.0
+	Next Hop: 10.40.11.206
+```
+
+Berikut adalah screenshot routing pada The Resonance.
+
+![Routing Order](images/routing2.png)
+
+- Router The Dauntless.
+
+Karena pada router The Dauntless ini tidak memiliki subnet di bawahnya lagi yang terhubung secara tidak langsung sehingga untuk routing kita hanya perlu untuk mengatur routing internetnya saja. Untuk mengatur routing internet adalah dengan network `0.0.0.0`, netmask `0.0.0.0` via IP interface dari Minister yang menuju ke Dauntless dalam hal ini `10.40.11.205`.
+
+Berikut adalah routing selengkapnya.
+
+```txt
+Internet:
+	Network: 0.0.0.0
+	Netmask: 0.0.0.0
+	Next Hop: 10.40.11.205
+```
+
+Berikut adalah screenshot routing pada The Resonance.
+
+![Routing Order](images/routing3.png)
+
+- Router The Magical.
+
+Karena pada router The Magical ini tidak memiliki subnet di bawahnya lagi yang terhubung secara tidak langsung sehingga untuk routing kita hanya perlu untuk mengatur routing internetnya saja. Untuk mengatur routing internet adalah dengan network `0.0.0.0`, netmask `0.0.0.0` via IP interface dari Resonance yang menuju ke Magical dalam hal ini `10.40.11.213`.
+
+Berikut adalah routing selengkapnya.
+
+```txt
+Internet:
+	Network: 0.0.0.0
+	Netmask: 0.0.0.0
+	Next Hop: 10.40.11.213
+```
+
+Berikut adalah screenshot routing pada The Magical.
+
+![Routing Order](images/routing4.png)
+
+- Router The Instrument.
+
+Pada router The Instrument kita akan menghubungkan subnet yang berada di bawah router.
+
+Agar bisa terhubung dengan internet, nantinya perlu untuk mengatur routing dengan network `0.0.0.0`, netmask `0.0.0.0` via IP interface dari Resonance yang menuju ke Instrument dalam hal ini `10.40.11.217`.
+
+```txt
+Internet:
+	Network: 0.0.0.0
+	Netmask: 0.0.0.0
+	Next Hop: 10.40.11.217
+```
+
+1. Subnet via The Firefist
+
+Nantinya akan terhubung via IP The Firefist yang menuju The Instrument.
+
+```txt
+Subnet A8:
+	Network: 10.40.4.0
+	Netmask: 255.255.254.0
+	Next Hop: 10.40.11.226
+Subnet A10:
+	Network: 10.40.9.0
+	Netmask: 255.255.255.0
+	Next Hop: 10.40.11.226
+Subnet A9:
+	Network: 10.40.11.196
+	Netmask: 255.255.255.252
+	Next Hop: 10.40.11.226
+```
+
+2. Subnet via Profound
+
+Nantinya akan terhubung via IP The Profound yang menuju The Instrument.
+
+```txt
+Subnet A6:
+	Network: 10.40.10.128
+	Netmask: 255.255.255.128
+	Next Hop: 10.40.11.222
+Subnet A7:
+	Network: 10.40.11.0
+	Netmask: 255.255.255.128
+	Next Hop: 10.40.11.222
+```
+
+Berikut adalah screenshot routing pada The Instrument.
+
+![Routing Order](images/routing5.png)
+
+- Router The Firefist.
+
+Pada router The Firefist kita akan menghubungkan subnet yang berada di bawah router. Nantinya subnet-subnet tersebut akan terhubung via IP The Queen yang menuju ke The Firefist. 
+
+Agar bisa terhubung dengan internet, nantinya perlu untuk mengatur routing dengan network `0.0.0.0`, netmask `0.0.0.0` via IP interface dari Order yang menuju ke Minister dalam hal ini `10.40.11.225`.
+
+Berikut adalah routing selengkapnya.
+
+```txt
+Internet:
+	Network: 0.0.0.0
+	Netmask: 0.0.0.0
+	Next Hop: 10.40.11.225
+Subnet A11:
+	Network: 10.40.11.196
+	Netmask: 255.255.255.252
+	Next Hop: 10.40.9.3
+```
+
+Berikut adalah screenshot routing pada The Firefist.
+
+![Routing Order](images/routing6.png)
+
+- Router The Queen.
+
+Karena pada router The Queen ini tidak memiliki subnet di bawahnya lagi yang terhubung secara tidak langsung sehingga untuk routing kita hanya perlu untuk mengatur routing internetnya saja. Untuk mengatur routing internet adalah dengan network `0.0.0.0`, netmask `0.0.0.0` via IP interface dari Firefist yang menuju ke Queen dalam hal ini `10.40.9.1`.
+
+Berikut adalah routing selengkapnya.
+
+```txt
+Internet:
+	Network: 0.0.0.0
+	Netmask: 0.0.0.0
+	Next Hop: 10.40.9.1
+```
+
+Berikut adalah screenshot routing pada The Queen.
+
+![Routing Order](images/routing7.png)
+
+- Router The Profound
+
+Karena pada router The Profound ini tidak memiliki subnet di bawahnya lagi yang terhubung secara tidak langsung sehingga untuk routing kita hanya perlu untuk mengatur routing internetnya saja. Untuk mengatur routing internet adalah dengan network `0.0.0.0`, netmask `0.0.0.0` via IP interface dari Firefist yang menuju ke Queen dalam hal ini `10.40.11.221`.
+
+Berikut adalah routing selengkapnya.
+
+```txt
+Internet:
+	Network: 0.0.0.0
+	Netmask: 0.0.0.0
+	Next Hop: 10.40.11.221
+```
+
+Berikut adalah screenshot routing pada The Queen.
+
+![Routing Order](images/routing7.png)
+
+#### 5. Testing
+
+Saat demo sudah ditesting sesuai dengan test yang diberikan oleh asisten. Hasilnya dari 15 test, 14 di antaranya berhasil. Satu yang tidak berhasil adalah test dari The Dauntless ke The Profound. Saat ini, kami sudah memperbaiki hal tersebut dan hasil tes sudah sukses. Berikut adalah beberapa tes yang kami lakukan.
+
+![Testing](images/Testing0.png)
+
+### Kendala
+
+- Awalnya kami sedikit kesulitan dalam melakukan routing, tapi pada akhirnya setelah membaca modul dan beberapa referensi, kami bisa menyelesaikan routing untuk VLSM.
+
+## CIDR
+---
+Buatlah penyelesaian subnetting dengan metode CIDR dari topologi yang diberikan!
+
+## Jawaban Soal CIDR 
