@@ -10,12 +10,12 @@ Kontribusi untuk modul ini sama rata (33.33% per orang).
 
 # Daftar Isi
 
-* [Daftar Isi](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#daftar-isi)
-* [Soal](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#soal)
-* [VLSM](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#vlsm)
-* [Jawaban VLSM](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#jawaban-soal-vlsm)
-* [CIDR](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#cidr)
-* [Jawaban CIDR](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#jawaban-soal-cidr)
+- [Daftar Isi](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#daftar-isi)
+- [Soal](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#soal)
+- [VLSM](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#vlsm)
+	- [Jawaban VLSM](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#jawaban-soal-vlsm)
+- [CIDR](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#cidr)
+	- [Jawaban CIDR](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#jawaban-soal-cidr)
 
 # Soal
 
