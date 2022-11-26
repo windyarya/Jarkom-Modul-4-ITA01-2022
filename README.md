@@ -14,8 +14,10 @@ Kontribusi untuk modul ini sama rata (33.33% per orang).
 - [Soal](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#soal)
 - [VLSM](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#vlsm)
 	- [Jawaban VLSM](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#jawaban-soal-vlsm)
+	- [Kendala VLSM](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#kendala-vlsm)
 - [CIDR](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#cidr)
 	- [Jawaban CIDR](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#jawaban-soal-cidr)
+	- [Kendala CIDR](https://github.com/windyarya/Jarkom-Modul-4-ITA01-2022#kendala-cidr)
 
 # Soal
 
@@ -55,12 +57,14 @@ Menentukan jumlah alamat IP yang dibutuhkan oleh tiap subnet dari 18 subnet yang
 | A1          | 1001 | 1022    | /22     | 255.255.252.0   | 10.40.0.0    | 10.40.0.1-10.40.3.254     | 10.40.3.255       |
 | A5          |  271 | 510     | /23     | 255.255.254.0   | 10.40.6.0    | 10.40.6.1-10.40.7.254     | 10.40.7.255       |
 | A8          |  501 | 510     | /23     | 255.255.254.0   | 10.40.4.0    | 10.40.4.1-10.40.5.254     | 10.40.5.255       |
-| A10         |  212 | 254     | /24     | 255.255.255.0   | 10.40.9.0    | 10.40.9.1-10.40.9.254     | 10.40.9.255       |
 | A11         |  251 | 254     | /24     | 255.255.255.0   | 10.40.8.0    | 10.40.8.1-10.40.8.254     | 10.40.8.255       |
+| A10         |  212 | 254     | /24     | 255.255.255.0   | 10.40.9.0    | 10.40.9.1-10.40.9.254     | 10.40.9.255       |
 | A4          |  121 | 126     | /25     | 255.255.255.128 | 10.40.10.0   | 10.40.10.1-10.40.10.126   | 10.40.10.127      |
 | A6          |  121 | 126     | /25     | 255.255.255.128 | 10.40.10.128 | 10.40.10.129-10.40.10.254 | 10.40.10.255      |
 | A7          |   71 | 126     | /25     | 255.255.255.128 | 10.40.11.0   | 10.40.11.1-10.40.11.126   | 10.40.11.127      |
 | A2          |   51 | 62      | /26     | 255.255.255.192 | 10.40.11.128 | 10.40.11.129-10.40.11.190 | 10.40.11.191      |
+| A3          |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.192 | 10.40.11.193-10.40.11.194 | 10.40.11.195      |
+| A9          |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.196 | 10.40.11.197-10.40.11.198 | 10.40.11.199      |
 | A12         |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.200 | 10.40.11.201-10.40.11.202 | 10.40.11.203      |
 | A13         |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.204 | 10.40.11.205-10.40.11.206 | 10.40.11.207      |
 | A14         |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.208 | 10.40.11.209-10.40.11.210 | 10.40.11.211      |
@@ -68,8 +72,6 @@ Menentukan jumlah alamat IP yang dibutuhkan oleh tiap subnet dari 18 subnet yang
 | A16         |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.216 | 10.40.11.217-10.40.11.218 | 10.40.11.219      |
 | A17         |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.220 | 10.40.11.221-10.40.11.222 | 10.40.11.223      |
 | A18         |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.224 | 10.40.11.225-10.40.11.226 | 10.40.11.227      |
-| A3          |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.192 | 10.40.11.193-10.40.11.194 | 10.40.11.195      |
-| A9          |    2 | 2       | /30     | 255.255.255.252 | 10.40.11.196 | 10.40.11.197-10.40.11.198 | 10.40.11.199      |
 | Total       | 2618 |         | /20     |                 |              |                           |                   |
 
 #### 2. Menggambarkan Tree
@@ -401,7 +403,7 @@ Saat demo sudah ditesting sesuai dengan test yang diberikan oleh asisten. Hasiln
 
 ![Testing](images/Testing0.png)
 
-### Kendala
+## Kendala VLSM
 
 - Awalnya kami sedikit kesulitan dalam melakukan routing, tapi pada akhirnya setelah membaca modul dan beberapa referensi, kami bisa menyelesaikan routing untuk VLSM.
 
@@ -410,3 +412,65 @@ Saat demo sudah ditesting sesuai dengan test yang diberikan oleh asisten. Hasiln
 Buatlah penyelesaian subnetting dengan metode CIDR dari topologi yang diberikan!
 
 ## Jawaban Soal CIDR 
+
+### Perhitungan CIDR
+
+#### 1. Menggabungkan Subnet
+
+Di sini kami menggabungkan subnet-subnet yang ada menjadi subnet yang lebih besar. Berikut adalah penggabungannya.
+
+- Subnet Awal: Subnet A
+
+![Subnet Awal](images/pembagiancidra.png)
+
+- Subnet B: Gabungan antar subnet A
+
+![Subnet Awal](images/pembagiancidrb.png)
+
+- Subnet C: Gabungan antar subnet B (atau juga A)
+
+![Subnet Awal](images/pembagiancidrc.png)
+
+- Subnet D: Gabungan antar subnet C (atau juga B)
+
+![Subnet Awal](images/pembagiancidrd.png)
+
+- Subnet E: Gabungan antar subnet D (atau juga C)
+
+![Subnet Awal](images/pembagiancidre.png)
+
+- Subnet F: Gabungan antar subnet D (atau juga D)
+
+![Subnet Awal](images/pembagiancidrf.png)
+
+Kemudian, untuk lebih jelasnya berikut adalah tabel penggabungan subnet-subnet tersebut.
+
+| Subnet | Gabungan dari | Subnet Mask | 
+|:------:|:-------------:|:-----------:|
+|B1      |A11+A9         |/23          |
+|B2      |A8+A10         |/22          |
+|B3      |A5+A6          |/22          |
+|B4      |A7+A17         |/24          |
+|B5      |A4+A18         |/24          |
+|B6      |A1+A13         |/21          |
+|B7      |A2+A12         |/25          |
+|C1      |B2+B1          |/21          |
+|C2      |B3+B4          |/21          |
+|C3      |B6+B5          |/20          |
+|C4      |B7+A14         |/24          |
+|D1      |C2+A15         |/20          |
+|D2      |C3+A16         |/19          |
+|D3      |C4+A3          |/23          |
+|E1      |D2+C1          |/18          |
+|E2      |D1+D3          |/19          |
+|F1      |E1+E2          |/17          |
+
+#### 2. Pembagian Tree
+
+Berikut adalah pembagian tree dari penggabungan subnet yang sudah kami buat.
+
+![treeCIDR](images/treeCIDR.png)
+
+## Kendala CIDR
+
+Kami masih kesulitan dalam melakukan routing pada GNS3.
