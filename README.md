@@ -1,4 +1,4 @@
-# soal-shift-jarkom-4-ITA01-2022
+# Jarkom-Modul-4-ITA01-2022
 
 Repository Laporan Resmi Praktikum Jaringan Komputer Modul 4 Kelompok ITA01 Tahun 2022.
 
