@@ -70,4 +70,4 @@ Dari hasil pembagian subnet diketahui terdapat sejumlah **18 Subnet**
 | Total       | 2618 |         | /20     |                 |              |                           |                   |
 
 2. Subnet besar yang kami bentuk memiliki NID 10.40.0.0 dengan netmask /20. Lalu, kita mulai dengan perhitungan pembagian IP dengan bantuan pohon IP seperti gambar berikut:<br>
-![Tree](images/tree.png)
+![Tree](images/tree.jpg)
